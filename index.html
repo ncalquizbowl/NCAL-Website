@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Carolina Academic League | NCAL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0b1329;    /* Deep Midnight Blue/Black */
+            --bg-secondary: #1c2541;  /* Rich Navy Blue */
+            --text-main: #ffffff;     /* Clean White Text */
+            --text-muted: #94a3b8;    /* Soft Muted Gray/Blue */
+            --primary: #3a86ff;       /* Vibrant Electric Blue */
+            --accent: #facc15;        /* Crisp Golden Yellow */
+            --border: #334155;        /* Slate Border */
+            --font-serif: 'Lora', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 3px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px; /* Slightly taller to accommodate larger text */
+        }
+
+        .logo-group {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .logo-img {
+            height: 70px; /* Scaled up logo image slightly to match larger text */
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: var(--font-serif);
+            font-size: 1.85rem; /* Increased size significantly */
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.25rem;
+            transition: color 0.2s, border-color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Page Frame Layout */
+        .page-content {
+            padding: 4rem 0 6rem 0;
+            display: none; 
+        }
+
+        .page-content.active-page {
+            display: block;
+        }
+
+        h1.page-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        h2.section-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin: 2rem 0 1rem 0;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
+            max-width: 75ch; 
+        }
+
+        /* Grid Elements */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .staff-card {
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+        }
+
+        .staff-name {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .staff-role {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-box {
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Tables styling for Dark Theme */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            margin: 1.5rem 0;
+            background-color: var(--bg-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #0f172a;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 0.85rem 1rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: #e2e8f0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 3rem 1rem;
+            font-style: italic;
+        }
+
+        /* Content Blocks */
+        .resource-card {
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+        }
+
+        .resource-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #0b1329;
+            background-color: var(--accent);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-link:hover {
+            background-color: #fef08a;
+            transform: translateY(-1px);
+        }
+
+        .text-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        ul.content-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ul.content-list li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            color: #e2e8f0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 4px solid var(--bg-secondary);
+            padding: 3rem 0;
+            background: #0f172a;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 850px) {
+            nav { flex-direction: column; height: auto; padding: 1.5rem 0; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .footer-flex { flex-direction: column; gap: 1rem; text-align: center; }
+            h1.page-title { font-size: 2rem; }
+            .logo-main { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav">
+            <a href="#" class="logo-group" onclick="switchPage('home')">
+                <img src="image_8fe2f8.png" alt="NCAL Logo" class="logo-img">
+                <div class="logo-text-wrapper">
+                    <span class="logo-main">NC Academic League</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" id="nav-home" onclick="switchPage('home')">Home</a></li>
+                <li><a href="#about" id="nav-about" onclick="switchPage('about')">About & Staff</a></li>
+                <li><a href="#events" id="nav-events" onclick="switchPage('events')">Upcoming Events</a></li>
+                <li><a href="#pass" id="nav-pass" onclick="switchPage('pass')">Season Pass</a></li>
+                <li><a href="#stats" id="nav-stats" onclick="switchPage('stats')">Stats Service</a></li>
+                <li><a href="#rankings" id="nav-rankings" onclick="switchPage('rankings')">Rankings</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="page-home" class="page-content active-page">
+            <h1 class="page-title">Welcome to NCAL</h1>
+            <p>The North Carolina Academic League (NCAL) centralizes local high school quiz bowl resources, updates, and structures across the state.</p>
+            
+            <div class="resource-card">
+                <h3>The North Carolina Quiz Bowl Server</h3>
+                <p>An inclusive Discord community of over 100 members discussing upcoming events alongside providing advice for fellow players and coaches. Joining is accessible to all interested stakeholders.</p>
+                <a href="https://discord.gg/HxSRdddtjK" target="_blank" class="btn-link">Join the Discord Community &rarr;</a>
+            </div>
+
+            <div class="resource-card">
+                <h3>Match Recordings Archive</h3>
+                <p>NCAL records several games at its tournaments for posting during the summer with the express approval of question set writers. Review previous matches to enhance player training.</p>
+                <a href="https://www.youtube.com/@ncalquizbowl" target="_blank" class="btn-link">View YouTube Video Archive &rarr;</a>
+            </div>
+
+            <div class="resource-card">
+                <h3>Official Instagram</h3>
+                <p>Follow our social media presence for updates, highlights, photos, and announcements directly from the North Carolina circuit.</p>
+                <a href="https://www.instagram.com/ncal.quizbowl/" target="_blank" class="btn-link">Follow on Instagram &rarr;</a>
+            </div>
+        </section>
+
+        <section id="page-about" class="page-content">
+            <h1 class="page-title">About the League</h1>
+            
+            <h2 class="section-subtitle">What is NCAL?</h2>
+            <p>NCAL, or the North Carolina Academic League, is an organization dedicated to boosting the state, quality, and size of Quizbowl within North Carolina at the high school level. Currently based in Chapel Hill, NCAL aims to support teams from the Research Triangle and beyond by hosting regularly scheduled tournaments at a more affordable cost.</p>
+            <p>We are especially committed to supporting rural, Title 1, and underrepresented schools within North Carolina to play quizbowl and qualify for National level tournaments.</p>
+            <p>NCAL envisions a future where North Carolina contains both thriving local circuits, alongside a stronger, unified network stretching across the state.</p>
+
+            <h2 class="section-subtitle">Our Staff</h2>
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <div class="staff-name">Ell Shauf</div>
+                    <div class="staff-role">Head Director</div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-name">Lokajith Premkumar</div>
+                    <div class="staff-role">Student Leader and Tournament Director</div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-name">Ahadi Yara</div>
+                    <div class="staff-role">Student Leader and Tournament Director</div>
+                </div>
+                <div class="staff-card">
+                    <div class="staff-name">Benjamin McAvoy-Bickford</div>
+                    <div class="staff-role">Coordinator</div>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <strong>General Correspondence:</strong> For inquiries regarding operations, scheduling, or support, reach out directly at <a href="mailto:ncalquizbowl@gmail.com" class="text-link">ncalquizbowl@gmail.com</a>.
+            </div>
+        </section>
+
+        <section id="page-events" class="page-content">
+            <h1 class="page-title">Upcoming Events Schedule</h1>
+            <p>The current calendar schedule for upcoming local tournaments hosted or supported by NCAL.</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tournament Name</th>
+                            <th>Location</th>
+                            <th>Question Set</th>
+                            <th>Registration Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="empty-state">No upcoming events are currently scheduled at this time. Check back soon for updates.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="page-pass" class="page-content">
+            <h1 class="page-title">NCAL Season Pass</h1>
+            <p>Starting this year, we are offering an institutional NCAL Season Pass program to ease programmatic registration costs for new and growing teams across the state circuit.</p>
+            
+            <h2 class="section-subtitle">Eligibility Breakdown</h2>
+            <ul class="content-list">
+                <li><strong>Newly Established Programs:</strong> Teams established starting from the 2026-2027 school year are eligible to register for any official NCAL tournament completely <strong>free</strong>.</li>
+                <li><strong>Developing Programs with Need:</strong> Teams established starting from the 2025-2026 school year (at an institutional age of 2 years) with demonstrated financial or operational need are eligible to pay for a seasonal pass for a flat fee of <strong>$250</strong> across all circuit events. This represents an estimated value of $540.</li>
+            </ul>
+
+            <p>More information about the season pass can be found on the community forums.</p>
+            <a href="https://www.hsquizbowl.org/forums/viewtopic.php?p=412777&sid=99d4333b7e4429a1a1e90a2f9b5a6e95#p412777" target="_blank" class="btn-link" style="color:#0b1329;">Read Season Pass Forum Document &rarr;</a>
+
+            <div class="contact-box">
+                <strong>Ready to Register?</strong> Shoot us an email at <a href="mailto:ncalquizbowl@gmail.com" class="text-link">ncalquizbowl@gmail.com</a> to sign up or discuss your program eligibility.
+            </div>
+        </section>
+
+        <section id="page-stats" class="page-content">
+            <h1 class="page-title">Statistics Sharing Service</h1>
+            <p>Want hands-on assistance uploading comprehensive full statistics reports for your next tournament event? We have your program covered from start to finish at zero operational cost.</p>
+            
+            <h2 class="section-subtitle">Submission Instructions</h2>
+            <p>Simply compile and transmit either of the following documentation variants to our administrative staff:</p>
+            <ul class="content-list">
+                <li>Clear legible images or scanned copies of physical paper scoresheets.</li>
+                <li>An accessible hyperlink routing to your program's active digital scoresheets.</li>
+            </ul>
+
+            <div class="contact-box">
+                Email files directly to: <a href="mailto:ncalquizbowl@gmail.com" class="text-link">ncalquizbowl@gmail.com</a>
+            </div>
+            
+            <p style="margin-top: 1.5rem;"><strong>The Result:</strong> Our staff will handle processing your recorded data to construct a fully standardized statistics file optimized and compatible with submission protocols for both the local forums and the official National Association for Quiz Bowl Tournaments (NAQT) website.</p>
+        </section>
+
+        <section id="page-rankings" class="page-content">
+            <h1 class="page-title">Rankings</h1>
+            <p>The members of the NC Academic League work on the <a href="https://qbranks.live" target="_blank" class="text-link">QBRanks.live</a> rankings site, which provides live rankings of all Quiz Bowl teams in the nation. The following table shows teams' season records and ranks by QBRanks. For more information about QBRanks, please visit the website and read this article: <a href="https://hsquizbowl.org/forums/viewtopic.php?p=411560#p411560" target="_blank" class="text-link">HSQuizbowl Forum Discussion</a>.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>State Rank</th>
+                            <th>National Rank</th>
+                            <th>School Name</th>
+                            <th>Season Record (W-L)</th>
+                            <th>QBRanks Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="empty-state">Rankings data is currently processing. Check back soon for the latest seasonal standings updates.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-flex">
+            <div>
+                <p style="margin-bottom: 0.25rem; font-weight: 600; color: #ffffff;">&copy; 2026 North Carolina Academic League</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Serving Chapel Hill, the Research Triangle, and the wider North Carolina circuits.</p>
+            </div>
+            <div>
+                <p style="font-size: 0.85rem;">Contact: <a href="mailto:ncalquizbowl@gmail.com" style="color: var(--accent); text-decoration: none; font-weight:600;">ncalquizbowl@gmail.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            const targetNavLink = document.getElementById(`nav-${pageId}`);
+            if (targetNavLink) {
+                targetNavLink.classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (['home', 'about', 'events', 'pass', 'stats', 'rankings'].includes(hash)) {
+                switchPage(hash);
+            }
+        });
+    </script>
+</body>
+</html>
