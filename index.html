@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>North Carolina Academic League | NCAL</title>
+    <link rel="icon" type="image/x-icon" href="ncal_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -382,8 +383,8 @@
 
     <header>
         <div class="container nav">
-            <a href="#" class="logo-group" onclick="switchPage('home')">
-                <img src="image_8fe2f8.png" alt="NCAL Logo" class="logo-img">
+            <a href="#" class="logo-group" onclick="switchPage('home'); return false;">
+                <img src="ncal_logo.png" alt="NCAL Logo" class="logo-img">
                 <div class="logo-text-wrapper">
                     <span class="logo-main">NC Academic League</span>
                 </div>
@@ -463,7 +464,7 @@
             <h1 class="page-title">New to Quizbowl</h1>
 
             <div class="contact-box" style="border-left-color: var(--primary); margin-top: 0; margin-bottom: 2rem;">
-                <strong>New teams should consider our Season Pass!</strong> Teams can enroll in all NCAL tournaments for completely free. For more information, see the <a onclick="switchPage('pass')" class="text-link">Season Pass page</a>.
+                <strong>New teams should consider our Season Pass!</strong> Teams can enroll in all NCAL tournaments for completely free. For more information, see the <a href="#" onclick="switchPage('pass'); return false;" class="text-link">Season Pass page</a>.
             </div>
             
             <h2 class="section-subtitle">What is Quiz Bowl?</h2>
@@ -630,7 +631,7 @@
     </footer>
 
     <script>
-        // 1. App Router Controller
+        // 1. App Router Controller Definition
         function switchPage(pageId) {
             const pages = document.querySelectorAll('.page-content');
             pages.forEach(page => { page.classList.remove('active-page'); });
