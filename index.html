@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>North Carolina Academic League | NCAL</title>
-    <link rel="icon" type="image/x-icon" href="ncal_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,7 +35,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -55,7 +54,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100px; /* Slightly taller to accommodate larger text */
+            min-height: 100px;
+            padding: 1rem 0;
         }
 
         .logo-group {
@@ -63,10 +63,11 @@
             display: flex;
             align-items: center;
             gap: 1.25rem;
+            flex-shrink: 0;
         }
 
         .logo-img {
-            height: 70px; /* Scaled up logo image slightly to match larger text */
+            height: 70px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
@@ -79,7 +80,7 @@
 
         .logo-main {
             font-family: var(--font-serif);
-            font-size: 1.85rem; /* Increased size significantly */
+            font-size: 1.85rem;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.5px;
@@ -88,18 +89,21 @@
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.25rem;
             list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             padding: 0.5rem 0.25rem;
             transition: color 0.2s, border-color 0.2s;
             border-bottom: 2px solid transparent;
+            white-space: nowrap;
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -261,6 +265,7 @@
             color: var(--accent);
             text-decoration: none;
             font-weight: 600;
+            cursor: pointer;
         }
 
         .text-link:hover {
@@ -276,6 +281,76 @@
             margin-bottom: 0.5rem;
             font-size: 1.05rem;
             color: #e2e8f0;
+        }
+
+        /* Team of the Month Interface Elements */
+        .slider-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .slider-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.75rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .slider-btn:hover {
+            color: #ffffff;
+        }
+
+        .current-month-display {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .month-content {
+            display: none;
+        }
+
+        .month-content.active-month {
+            display: block;
+        }
+
+        .team-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .team-layout {
+                grid-template-columns: 40% 60%;
+            }
+        }
+
+        .team-photo-container {
+            border: 1px solid var(--border);
+            background: #0f172a;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Footer */
@@ -294,9 +369,9 @@
             align-items: center;
         }
 
-        @media (max-width: 850px) {
+        @media (max-width: 950px) {
             nav { flex-direction: column; height: auto; padding: 1.5rem 0; gap: 1rem; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
             .footer-flex { flex-direction: column; gap: 1rem; text-align: center; }
             h1.page-title { font-size: 2rem; }
             .logo-main { font-size: 1.5rem; }
@@ -308,7 +383,7 @@
     <header>
         <div class="container nav">
             <a href="#" class="logo-group" onclick="switchPage('home')">
-                <img src="ncal_logo.png" alt="NCAL Logo" class="logo-img">
+                <img src="image_8fe2f8.png" alt="NCAL Logo" class="logo-img">
                 <div class="logo-text-wrapper">
                     <span class="logo-main">NC Academic League</span>
                 </div>
@@ -316,6 +391,8 @@
             <ul class="nav-links">
                 <li><a href="#home" id="nav-home" onclick="switchPage('home')">Home</a></li>
                 <li><a href="#about" id="nav-about" onclick="switchPage('about')">About & Staff</a></li>
+                <li><a href="#new" id="nav-new" onclick="switchPage('new')">New to Quizbowl</a></li>
+                <li><a href="#totm" id="nav-totm" onclick="switchPage('totm')">Team of the Month</a></li>
                 <li><a href="#events" id="nav-events" onclick="switchPage('events')">Upcoming Events</a></li>
                 <li><a href="#pass" id="nav-pass" onclick="switchPage('pass')">Season Pass</a></li>
                 <li><a href="#stats" id="nav-stats" onclick="switchPage('stats')">Stats Service</a></li>
@@ -379,6 +456,78 @@
 
             <div class="contact-box">
                 <strong>General Correspondence:</strong> For inquiries regarding operations, scheduling, or support, reach out directly at <a href="mailto:ncalquizbowl@gmail.com" class="text-link">ncalquizbowl@gmail.com</a>.
+            </div>
+        </section>
+
+        <section id="page-new" class="page-content">
+            <h1 class="page-title">New to Quizbowl</h1>
+
+            <div class="contact-box" style="border-left-color: var(--primary); margin-top: 0; margin-bottom: 2rem;">
+                <strong>New teams should consider our Season Pass!</strong> Teams can enroll in all NCAL tournaments for completely free. For more information, see the <a onclick="switchPage('pass')" class="text-link">Season Pass page</a>.
+            </div>
+            
+            <h2 class="section-subtitle">What is Quiz Bowl?</h2>
+            <p>Quiz Bowl is an academic competition comprising a wide variety of topics, ranging from trivia and popular culture to math and physics. The base concept is that two teams of 4 players each compete to answer questions, and whoever is able to score more points is the victor.</p>
+            <p>To discover more about its formal game mechanics, parameters, and structure, you can learn more here: <a href="https://www.naqt.com/about/quiz-bowl.html" target="_blank" class="text-link">About Quiz Bowl (NAQT)</a>.</p>
+
+            <h2 class="section-subtitle">Why is Quiz Bowl beneficial?</h2>
+            <p>Quiz Bowl is a widespread activity that has connected people from all over the country over the shared pursuit of knowledge. Quiz Bowl helps students identify concepts of interest in a fun and accessible manner, while also promoting critical thinking under pressure and teamwork. Players need to learn how to communicate ideas with their team to find answers. Quiz Bowl also benefits from an incredibly inclusive and active community, with openly accessible ways to connect with others.</p>
+
+            <h2 class="section-subtitle">How can my school get involved?</h2>
+            <p>Quiz Bowl takes a handful of motivated and interested students. It's beneficial to have a club where the students can convene and practice for tournaments. We recommend finding a teacher interested to serve as advisor and have students join the club.</p>
+
+            <h2 class="section-subtitle">How should I study?</h2>
+            <p>There are many beneficial ways to study Quiz Bowl, and choosing the one for you can take time. As a team, its often very important to try to distribute categories across teammates, allowing for different people to focus on different subject areas. For NAQT questions, the subject distribution can be found here, allowing for you to determine levels of priority: <a href="https://www.naqt.com/hs/distribution.jsp" target="_blank" class="text-link">NAQT High School Subject Distribution</a>.</p> 
+
+            <p>There are two "kinds" of Quiz Bowl knowledge, dubbed "real" and "fake." Real knowledge is considered knowledge gained through more organic means, where students study what interests them in traditional manners, such as classroom activities and textbooks. Fake knowledge is considered knowledge gained through specifically studying Quiz Bowl content. People study for fake knowledge through playing a large amount of questions (primarily through qbreader.org), and flashcards (such as the Anki application). Despite its name, fake knowledge is no worse than real knowledge.</p>
+
+            <h2 class="section-subtitle">Some useful links for studying:</h2>
+            <ul class="content-list">
+                <li><a href="https://www.naqt.com/how-to/improve-as-a-player.html" target="_blank" class="text-link">Improving as a Player (NAQT)</a></li>
+                <li><a href="https://quizbowlpackets.com/" target="_blank" class="text-link">High School Quiz Bowl Packet Archive</a></li>
+                <li><a href="https://www.naqt.com/you-gotta-know/" target="_blank" class="text-link">You Gotta Know (NAQT)</a></li>
+                <li><a href="https://www.qbreader.org/database/" target="_blank" class="text-link">QBReader Database</a></li>
+            </ul>
+        </section>
+
+        <section id="page-totm" class="page-content">
+            <h1 class="page-title">Team of the Month</h1>
+            <p>Every month, NCAL shines a spotlight on a standout team from across our circuit to celebrate their progress, community involvement, and achievements.</p>
+
+            <div class="slider-controls">
+                <button class="slider-btn" onclick="changeMonth(-1)">&larr;</button>
+                <div class="current-month-display" id="month-label">September 2026</div>
+                <button class="slider-btn" onclick="changeMonth(1)">&rarr;</button>
+            </div>
+
+            <div id="month-content-0" class="month-content active-month">
+                <div class="empty-state" style="background-color: var(--bg-secondary); border: 1px dashed var(--border);">
+                    Check back later! The season features will begin processing here shortly.
+                </div>
+            </div>
+
+            <div id="month-content-1" class="month-content">
+                <div class="empty-state" style="background-color: var(--bg-secondary); border: 1px dashed var(--border);">
+                    Check back later!
+                </div>
+            </div>
+
+            <div id="month-content-2" class="month-content">
+                <div class="empty-state" style="background-color: var(--bg-secondary); border: 1px dashed var(--border);">
+                    Check back later!
+                </div>
+            </div>
+
+            <div id="month-content-3" class="month-content">
+                <div class="empty-state" style="background-color: var(--bg-secondary); border: 1px dashed var(--border);">
+                    Check back later!
+                </div>
+            </div>
+
+            <div id="month-content-4" class="month-content">
+                <div class="empty-state" style="background-color: var(--bg-secondary); border: 1px dashed var(--border);">
+                    Check back later!
+                </div>
             </div>
         </section>
 
@@ -481,16 +630,13 @@
     </footer>
 
     <script>
+        // 1. App Router Controller
         function switchPage(pageId) {
             const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => {
-                page.classList.remove('active-page');
-            });
+            pages.forEach(page => { page.classList.remove('active-page'); });
 
             const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
+            navLinks.forEach(link => link.classList.remove('active'));
 
             const targetPage = document.getElementById(`page-${pageId}`);
             if (targetPage) {
@@ -505,9 +651,32 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // 2. Team of the Month Slider Logic
+        const monthsData = [
+            "September 2026",
+            "October 2026",
+            "November 2026",
+            "December 2026",
+            "January 2027"
+        ];
+        let currentMonthIndex = 0;
+
+        function changeMonth(direction) {
+            document.getElementById(`month-content-${currentMonthIndex}`).classList.remove('active-month');
+            
+            currentMonthIndex += direction;
+            if (currentMonthIndex < 0) currentMonthIndex = 0;
+            if (currentMonthIndex >= monthsData.length) currentMonthIndex = monthsData.length - 1;
+            
+            document.getElementById('month-label').innerText = monthsData[currentMonthIndex];
+            document.getElementById(`month-content-${currentMonthIndex}`).classList.add('active-month');
+        }
+
+        // Handle URL hash deep links neatly
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.replace('#', '');
-            if (['home', 'about', 'events', 'pass', 'stats', 'rankings'].includes(hash)) {
+            const validPages = ['home', 'about', 'new', 'totm', 'events', 'pass', 'stats', 'rankings'];
+            if (validPages.includes(hash)) {
                 switchPage(hash);
             }
         });
